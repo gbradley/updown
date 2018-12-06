@@ -43,10 +43,10 @@ The Client is used to fetch and obtain Check instances, which allow you to inspe
 
 ### Client
 
-- [checks()](#checks())
-- [create()](#create())
-- [check()](#check())
-- [ips()](#ips())
+- [checks()](#checks)
+- [create()](#create)
+- [check()](#check)
+- [ips()](#ips)
 
 #### checks()
 
@@ -77,13 +77,13 @@ Retrieve a list of all the IPs used to perform checks. You may specify the IP ve
 
 ### Check
 
-- [getters & setters](getters & setters)
-- [save()](save())
-- [enable()](enable())
-- [disable()](disable())
-- [downtimes()](downtimes())
-- [metrics()](metrics())
-- [delete()](delete())
+- [getters & setters](#getters-setters)
+- [save()](#save)
+- [enable()](#enable)
+- [disable()](#disable)
+- [downtimes()](#downtimes)
+- [metrics()](#metrics)
+- [delete()](#delete)
 
 #### Getters & setters
 
