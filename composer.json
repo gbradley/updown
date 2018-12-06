@@ -1,0 +1,31 @@
+{
+    "name": "gbradley/updown",
+    "type": "library",
+    "description": "Easy integration with Updown.io",
+    "keywords": ["updown","monitoring"],
+    "homepage": "https://github.com/gbradley/updown",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Graham Bradley",
+            "email": "hello@gbradley.com",
+            "homepage": "https://gbradley.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+        	"GBradley\\Updown\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GBradley\\Updown\\Laravel\\ServiceProvider"
+            ]
+        }
+    }
+}
