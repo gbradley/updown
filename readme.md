@@ -1,6 +1,6 @@
 # Updown
 
-A PHP library for the [updown.io](https://updown.io) website monitoring API. Create, inspect, modify and delete checks from PHP; works great wth Laravel too.
+A PHP library for the [updown.io](https://updown.io) website monitoring API. Create, inspect, modify and delete checks, with optional Laravel integration.
 
 	$check = $updown->create('https://mysite.com', [
 		'alias' 	=> 'MySite',
@@ -77,7 +77,7 @@ Retrieve a list of all the IPs used to perform checks. You may specify the IP ve
 
 ### Check
 
-- [getters & setters](#getters-setters)
+- [getters & setters](#getters--setters)
 - [save()](#save)
 - [enable()](#enable)
 - [disable()](#disable)
@@ -141,7 +141,7 @@ Start by publishing the config file:
 
 	$ php artisan vendor:publish --Provider=Gbradley\Updown\Laravel\ServiceProvider
 	
-By default, `config/updown.php` attempts to read `UPDOWN_API_KEY` and `UPDOWN_DEFAULT_TOKEN` from your `.env` file.
+By default, `config/updown.php` attempts to read `UPDOWN_API_KEY` and `UPDOWN_APP_TOKEN` from your `.env` file.
 
 ### Service Provider
 
@@ -156,7 +156,7 @@ With Laravel 5.5 or later, the ServiceProvider will be automatically detected. Y
 	
 ### Maintenance mode
 
-If your application is checked by updown.io, you'll want to avoid running checks when performing mainenance. Provided your app token is set, the package will automatically disable the check when you run the `artisan down` command, and enable them again after `artisan up`.
+If your application is checked by updown.io, you'll want to avoid running that check during mainenance. Provided your app token is set, the package will automatically disable the check when you run the `artisan down` command, and enable it again after `artisan up`.
 
 If you wish to disable this behaviour, you can do so in the config file.
 
