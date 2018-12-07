@@ -3,19 +3,8 @@
 namespace GBradley\Updown\Laravel\Events;
 
 use GBradley\Updown\Check;
+use GBradley\Updown\Laravel\Events\Event;
 
-class Down
+class Down extends Event
 {
-
-    public $check;
-    public $downtime;
-
-    /**
-     * Create a new event instance.
-     */
-    public function __construct(Check $check, array $downtime)
-    {
-        $this->check = $check;
-        $this->downtime = $downtime;
-    }
 }

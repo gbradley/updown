@@ -3,6 +3,7 @@
 namespace Gbradley\Updown\Laravel;
 
 use GBradley\Updown\Client as Updown;
+use GBradley\Updown\ApiException;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Console\Events\CommandFinished;
@@ -33,30 +34,47 @@ class ServiceProvider extends BaseServiceProvider
             return new Updown(config('updown.api_key'), config('updown.app_token'));
         });
 
-        // If enabled and an app token is supplied, watch for changes in maintenance mode.
-        if (config('updown.maintenance.disable_checks') && config('updown.app_token')) {
-            $this->watchForMaintainence();
+        // If enabled and an app token is supplied, listen for changes in maintenance mode.
+        if (config('updown.maintenance.listen') && config('updown.app_token')) {
+            $this->listenForMaintainence();
         }
     }
 
     /**
-     * Watch for the Artisan up/down comands and toggle the check status as needed.
+     * Listen for the Artisan up/down comands and toggle the check status as needed.
      */
-    protected function watchForMaintainence()
+    protected function listenForMaintainence()
     {
 
         // Disable the check before putting the application into maintenance mode.
         Event::listen(CommandStarting::class, function($event) {
             if ($event->command == 'down') {
-                app(Updown::class)->check()->disable();
+                $event->output->writeln($this->setCheckStatus(false));
             }
         });
 
         // Enable the check after exiting maintenance mode.
         Event::listen(CommandFinished::class, function($event) {
             if ($event->command == 'up') {
-                app(Updown::class)->check()->enable();
+                $event->output->writeln($this->setCheckStatus(true));
             }
         });
+    }
+
+    /**
+     * Try to set the app check status, returning output describing the result.
+     */
+    protected function setCheckStatus(bool $enable) : string
+    {
+        list ($method, $style, $success, $failure) = $enable
+            ? ['enable', 'comment', 'enabled', 'enabling']
+            : ['disable', 'info', 'disabled', 'disabling'];
+        try {
+            app(Updown::class)->check()->$method();
+            $output = sprintf("<%s>updown.io check %s.</%s>", $style, $success, $style);
+        } catch (ApiException $e) {
+            $output = sprintf("<error>Failed %s updown.io check: %s.</error>", $failure, $e->getMessage());
+        }
+        return $output;
     }
 }

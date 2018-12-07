@@ -17,8 +17,8 @@ return [
 	 */
 	'maintenance' 		=> [
 
-		// Automatically disable checks while in maintenance mode. Requires an app_token to be set.
-		'disable_checks'		=> true,
+		// Automatically listen for maintenance mode and enable/disable checks as appropriate. Requires an app_token to be set.
+		'listen'		=> true,
 
 	],
 
