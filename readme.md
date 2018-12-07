@@ -156,7 +156,7 @@ With Laravel 5.5 or later, the ServiceProvider will be automatically detected. Y
 	
 ### Maintenance mode
 
-If your application is checked by updown.io, you'll want to avoid running that check during mainenance. Provided your app token is set, the package will automatically disable the check when you run the `artisan down` command, and enable it again after `artisan up`.
+If your application is checked by updown.io, you'll want to avoid running that check while in maintenance mode. Provided your app token is set, the package will automatically disable the check when you run the `artisan down` command, and enable it again after `artisan up`.
 
 If you wish to disable this behaviour, you can do so in the config file.
 

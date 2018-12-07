@@ -5,8 +5,6 @@ namespace GBradley\Updown\Laravel;
 use App\Http\Controllers\Controller;
 use GBradley\Updown\Client;
 use GBradley\Updown\Check;
-use GBradley\Updown\Laravel\Events\Up;
-use GBradley\Updown\Laravel\Events\Down;
 use Illuminate\Http\Request;
 
 class WebhookController extends Controller {
