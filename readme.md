@@ -20,7 +20,7 @@ A PHP library for the [updown.io](https://updown.io) website monitoring API. Cre
 
 ## Requirements
 
-Updown requires PHP 7.1 or above.
+Updown requires PHP 7.1 or above. The optional Laravel integration requires 5.5 or above.
 
 ## Installation
 
@@ -145,7 +145,7 @@ By default, `config/updown.php` attempts to read `UPDOWN_API_KEY` and `UPDOWN_AP
 
 ### Service Provider
 
-With Laravel 5.5 or later, the ServiceProvider will be automatically detected. You can now resolve a configured singleton directly from the container or via dependency injection.
+The ServiceProvider will be automatically detected, and configures a client singleton using the credentials from the config. You may resolve the client from the container or via dependency injection.
 
 	use GBradley\Updown\Client;
 	...
