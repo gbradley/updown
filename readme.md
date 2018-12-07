@@ -16,7 +16,7 @@ A PHP library for the [updown.io](https://updown.io) website monitoring API. Cre
 - [Installation](#installation)
 - [Setup](#setup)
 - [Usage](#usage)
-- [Working with Laravel](#working-with-laravel)
+- [Laravel integration](#laravel-integration)
 
 ## Requirements
 
@@ -53,7 +53,7 @@ The Client is used to fetch and obtain Check instances, which allow you to inspe
 Returns an array of `Gbradley\Updown\Check`s, keyed by their token.
 
 	$checks = $updown->checks();
-	$checks[0]->alias;			// 'MySite'
+	$checks['abcd']->alias;			// 'MySite'
 	
 #### create()
 
@@ -126,7 +126,7 @@ Returns an array of metrics for the check; you can provide any of the [documente
 
 Deletes the check.
 
-## Working with Laravel
+## Laravel integration
 
 If you use Laravel, the package can assist you by auto-resolving a client, disabling checks while in maintenance mode, and listening for events via webhooks.
 
@@ -156,7 +156,7 @@ With Laravel 5.5 or later, the ServiceProvider will be automatically detected. Y
 	
 ### Maintenance mode
 
-If your application is checked by updown.io, you'll want to avoid running that check while in maintenance mode. Provided your app token is set, the package will automatically disable the check when you run the `artisan down` command, and enable it again after `artisan up`.
+If your application is checked by updown.io, you'll want to avoid running that check during mainenance. Provided your app token is set, the package will automatically disable the check when you run the `artisan down` command, and enable it again after `artisan up`.
 
 If you wish to disable this behaviour, you can do so in the config file.
 
