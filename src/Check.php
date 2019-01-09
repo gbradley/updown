@@ -72,16 +72,21 @@ class Check {
 	}
 
 	/**
+	 * Return all data for the check.
+	 */
+	public function data() : array
+	{
+		return $this->fetch();
+	}
+
+	/**
 	 * Magic method for getting a named attribute. The method will avoid an HTTP request if possible.
 	 */
 	public function __get($name) {
 		if (array_key_exists($name, $this->updates)) {
 			$value = $this->updates[$name];
 		} else {
-			if (is_null($this->data)) {
-				$this->data = $this->client->request('checks/' . $this->token);
-			}
-			$value = $this->data[$name];
+			$value = $this->fetch()[$name];
 		}
 		return $value;
 	}
@@ -91,5 +96,16 @@ class Check {
 	 */
 	public function __set($name, $value) {
 		$this->updates[$name] = $value;
+	}
+
+	/**
+	 * Fetch the check data.
+	 */
+	protected function fetch() : array
+	{
+		if (is_null($this->data)) {
+			$this->data = $this->client->request('checks/' . $this->token);
+		}
+		return $this->data;
 	}
 }

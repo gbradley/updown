@@ -97,6 +97,10 @@ To set data on a Check, assign the value to the property:
 	
 **Note that changes via setters will not be applied until you call save().**
 
+#### data()
+
+You may also retrieve all data held about a check with the `data()` method. This will return an associative array.
+
 #### save()
 
 Applies any changes made to the check. You may provide an additional array of changes to this method.
