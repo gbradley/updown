@@ -78,6 +78,7 @@ Retrieve a list of all the IPs used to perform checks. You may specify the IP ve
 ### Check
 
 - [getters & setters](#getters--setters)
+- [data()](#data)
 - [save()](#save)
 - [enable()](#enable)
 - [disable()](#disable)
@@ -109,6 +110,7 @@ Applies any changes made to the check. You may provide an additional array of ch
 	$check->save([
 		'period'	=> 120,
 	]);
+	#1
 
 #### enable()
 
