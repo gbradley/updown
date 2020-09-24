@@ -110,7 +110,6 @@ Applies any changes made to the check. You may provide an additional array of ch
 	$check->save([
 		'period'	=> 120,
 	]);
-	#1
 
 #### enable()
 
